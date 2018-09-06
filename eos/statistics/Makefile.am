@@ -29,6 +29,7 @@ libeosstatistics_la_SOURCES = \
 	log-prior.cc log-prior.hh log-prior-fwd.hh \
 	markov-chain.cc markov-chain.hh \
 	markov-chain-sampler.cc markov-chain-sampler.hh \
+	mixture-density.cc mixture-density.hh \
 	prior-sampler.cc prior-sampler.hh \
 	proposal-functions.cc proposal-functions.hh \
 	rvalue.cc rvalue.hh \
@@ -57,6 +58,7 @@ include_eos_statistics_HEADERS = \
 	log-prior.hh log-prior-fwd.hh \
 	markov-chain.hh \
 	markov-chain-sampler.hh \
+	mixture-density.hh \
 	prior-sampler.hh \
 	proposal-functions.hh \
 	rvalue.hh \
