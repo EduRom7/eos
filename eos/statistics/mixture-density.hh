@@ -9,10 +9,15 @@ namespace eos
   class MixtureDensity : public Density
   {
     using MixtureDensityPtr = std::shared_ptr<MixtureDensity>;
-    void evaluate(){ //Take a Component, evaluate it and add it to a sum of values. Use shared pointer to go through all components.
-      
-};
-class Component : public MixtureDensity
+    std::vector<double> weights;
+    
+
+    
+    void evaluate(){
+      //Take a Component, evaluate it and multiply it by its weight; then add it to a sum of evaluated components. Use shared pointer to go through all components.
+      };
+
+    class Component : public MixtureDensity
 {
   virtual void evaluate() = 0;
 };
