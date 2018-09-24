@@ -2,24 +2,42 @@
 #define EOS_STATISTICS_MIXTURE_DENSITY_HH
 
 #include <eos/utils/density.hh>
-#include <vector>
+#include <eos/utils/private_implementation_pattern.hh>
 
 namespace eos
 {
-  class MixtureDensity : public Density
-  {
-    using MixtureDensityPtr = std::shared_ptr<MixtureDensity>;
-    std::vector<double> weights;
-    
+    class MixtureDensity :
+        public Density,
+        public PrivateImplementationPattern<MixtureDensity>
+    {
+        public:
+            class Component;
+            using ComponentPtr = std::shared_ptr<MixtureDensity::Component>;
 
-    
-    void evaluate(){
-      //Take a Component, evaluate it and multiply it by its weight; then add it to a sum of evaluated components. Use shared pointer to go through all components.
-      };
+            class MultivariateGaussianComponent;
 
-    class Component : public MixtureDensity
-{
-  virtual void evaluate() = 0;
-};
+            MixtureDensity();
+            ~MixtureDensity() = default;
+
+            // Returns the (normalized) PDF on a logarithmic scale
+            virtual double evaluate() const override;
+    };
+
+    class MixtureDensity::Component :
+        public Density
+    {
+        public:
+            // Returns the (normalized) PDF on a logarithmic scale
+            virtual double evaluate() const = 0;
+    };
+
+    class MixtureDensity::MultivariateGaussianComponent :
+        public MixtureDensity::Component
+    {
+        public:
+            // Returns the (normalized) PDF on a logarithmic scale
+            virtual double evaluate() const override;
+    };
+}
 
 #endif 
