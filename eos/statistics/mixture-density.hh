@@ -31,12 +31,14 @@ namespace eos
             virtual double evaluate() const = 0;
     };
 
-    class MixtureDensity::MultivariateGaussianComponent :
-        public MixtureDensity::Component
+    class MixtureDensity::UnivariateGaussianComponent :
+        public MixtureDensity::Component,
+		public PrivateImplementationPattern<MixtureDensity::UnivariateGaussianComponent>
     {
         public:
             // Returns the (normalized) PDF on a logarithmic scale
             virtual double evaluate() const override;
+            UnivariateGaussianComponent(double mean, double variance);
     };
 }
 
